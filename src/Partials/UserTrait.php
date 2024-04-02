@@ -20,9 +20,7 @@ trait UserTrait
 
     public function setUser(?string $user = NULL): void
     {
-        
         $this->user = $user;
-        return $this;
     }
 
     public function setUserSafe(string $user = NULL): void
