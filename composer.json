@@ -1,0 +1,26 @@
+{
+    "name": "mirage/url",
+    "description": "Mirage Url: Abstraction for Url and utilities to manipulate url",
+    "keywords":["http", "url", "request"],
+    "homepage": "https://miragedigitals.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sina Kuhestani",
+            "role": "Maintainer",
+            "email": "me@kuhestani.org",
+            "homepage": "https://kuhestani.org"
+        },
+		{
+			"name": "MirageDigitals Community",
+			"homepage": "https://miragedigitals.com/contributors"
+		}
+    ],
+    "require": {
+        "php": "8.1 - 8.3"
+    },
+    "autoload": {
+		"classmap": ["src/"]
+	},
+    "minimum-stability": "stable"
+}
