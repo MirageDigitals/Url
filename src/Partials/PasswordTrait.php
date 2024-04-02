@@ -18,12 +18,12 @@ trait PasswordTrait
         return $this->password;
     }
 
-    public function setPassword(?string $password): void
+    public function setPassword(?string $password = NULL): void
     {
         $this->password = $password;
     }
 
-    public function setPasswordSafe(?string $password): void
+    public function setPasswordSafe(?string $password = NULL): void
     {
         if (TRUE === empty($password)) $password = NULL;
         $this->setPassword($password);

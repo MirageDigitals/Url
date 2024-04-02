@@ -23,7 +23,7 @@ trait PathTrait
         $this->path = "/" . ltrim((string) $path, "/");
     }
 
-    public function setPathSafe(?string $path): void
+    public function setPathSafe(?string $path = NULL): void
     {
         if (TRUE === empty($path)) $path = NULL;
         $this->setPath($path);
