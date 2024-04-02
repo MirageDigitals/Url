@@ -26,6 +26,6 @@ trait PasswordTrait
     public function setPasswordSafe(?string $password): void
     {
         if (TRUE === empty($password)) $password = NULL;
-        $this->password = $password;
+        $this->setPassword($password);
     }
 }
