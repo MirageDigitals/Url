@@ -30,4 +30,9 @@ trait SchemaTrait
         if (TRUE === empty($scheme)) $scheme = NULL;
         $this->setScheme($scheme);
     }
+
+    public function getDefaultScheme(): string
+    {
+        return $this->deafultScheme;
+    }
 }

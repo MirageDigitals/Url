@@ -33,13 +33,13 @@ class Url implements \JsonSerializable
         }
 
         $this->setScheme($parsedUrl["scheme"] ?? $this->deafultScheme);
-        $this->setPort((int) $parsedUrl["port"] ?? $this->defaultPort);
-        $this->setHost(rawurldecode($parsedUrl["host"] ?? NULL));
-        $this->setUser(rawurldecode($parsedUrl["user"] ?? NULL));
-        $this->setPassword(rawurldecode($parsedUrl["pass"] ?? NULL));
+        $this->setPort((int) ($parsedUrl["port"] ?? $this->defaultPort));
+        $this->setHost(rawurldecode((string) ($parsedUrl["host"] ?? NULL)));
+        $this->setUser(rawurldecode((string) ($parsedUrl["user"] ?? NULL)));
+        $this->setPassword(rawurldecode((string) ($parsedUrl["pass"] ?? NULL)));
         $this->setPath($parsedUrl["path"] ?? NULL);
         $this->setQuery($parsedUrl["query"] ?? []);
-        $this->setFragment(rawurldecode($parsedUrl["fragment"] ?? NULL));
+        $this->setFragment(rawurldecode((string) ($parsedUrl["fragment"] ?? NULL)));
 
     }
     final public function toArray(): array
