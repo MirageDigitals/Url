@@ -62,4 +62,11 @@ final class FragmentTest extends TestCase
             }
         }
     }
+
+    public testCanonical():void
+    {
+        $url = new Url("https://sub.domain.tld/path/?q=query#fragment");
+        $canonicalUrlString = "https://sub.domain.tld/path/?q=query";
+        $this->assertSame($canonicalUrlString, $url->getCanonical());
+    }
 }
