@@ -30,4 +30,9 @@ trait PortTrait
         if (TRUE === empty($port)) $port = NULL;
         $this->setPort($port);
     }
+
+    public function getDefaultPort(): int
+    {
+        return $this->defaultPort;
+    }
 }
