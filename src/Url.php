@@ -133,15 +133,15 @@ class Url implements \JsonSerializable
     //         && $query === $query2
     //         && $url->fragment === $this->fragment;
     // }
-    // public function getCanonical(): static
-    // {
-    //     $this->path = preg_replace_callback(
-    //         '#[^!$&\'()*+,/:;=@%]+#',
-    //         fn(array $m): string => rawurlencode($m[0]),
-    //         UrlUtils::unescape($this->path, '%/'),
-    //     );
-    //     $this->host = rtrim($this->host, '.');
-    //     $this->host = UrlUtils::idnHostToUnicode(strtolower($this->host));
-    //     return $this;
-    // }
+    public function getCanonical(): static
+    {
+        $this->path = preg_replace_callback(
+            '#[^!$&\'()*+,/:;=@%]+#',
+            fn(array $m): string => rawurlencode($m[0]),
+            UrlUtils::unescape($this->path, '%/'),
+        );
+        $this->host = rtrim($this->host, '.');
+        $this->host = UrlUtils::idnHostToUnicode(strtolower($this->host));
+        return $this;
+    }
 }
