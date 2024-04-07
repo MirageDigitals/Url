@@ -23,7 +23,7 @@ trait FragmentTrait
         $this->fragment = $fragment;
     }
 
-    public function setFragmentSafe(?string $fragment): void
+    public function setFragmentSafe(?string $fragment = NULL): void
     {
         if (TRUE === empty($fragment)) $fragment = NULL;
         $this->setFragment($fragment);

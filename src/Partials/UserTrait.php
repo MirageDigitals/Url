@@ -23,7 +23,7 @@ trait UserTrait
         $this->user = $user;
     }
 
-    public function setUserSafe(string $user = NULL): void
+    public function setUserSafe(?string $user = NULL): void
     {
         if (TRUE === empty($user)) $user = NULL;
         $this->setUser($user);
