@@ -62,17 +62,7 @@ class Url implements \JsonSerializable
     }
     public function jsonSerialize(): string
     {
-        return $this->getAbsoluteUrl();
-    }
-    public function getDomain(int $level = 2): string
-    {
-        $parts = ip2long($this->host)
-            ? [$this->host]
-            : explode('.', $this->host);
-        $parts = $level >= 0
-            ? array_slice($parts, -$level)
-            : array_slice($parts, 0, $level);
-        return implode('.', $parts);
+        return json_encode($this->toArray(), JSON_UNESCAPED_SLASHES);
     }
     public function getAbsoluteUrl(): string
     {
@@ -97,47 +87,61 @@ class Url implements \JsonSerializable
         return ($this->scheme ? $this->scheme . ':' : '')
             . (($authority = $this->getAuthority()) !== '' ? '//' . $authority : '');
     }
-    public function getBasePath(): string
-    {
-        $pos = strrpos($this->path, '/');
-        return $pos === FALSE ? '' : substr($this->path, 0, $pos + 1);
-    }
-    public function getBaseUrl(): string
-    {
-        return $this->getHostUrl() . $this->getBasePath();
-    }
-    public function getRelativeUrl(): string
-    {
-        return substr($this->getAbsoluteUrl(), strlen($this->getBaseUrl()));
-    }
-    public function isEqual(string $url): bool
-    {
-        $url   = new self($url);
-        $query = $url->query;
-        ksort($query);
-        $query2 = $this->query;
-        ksort($query2);
-        $host  = rtrim($url->host, '.');
-        $host2 = rtrim($this->host, '.');
-        return $url->scheme === $this->scheme
-            && (! strcasecmp($host, $host2)
-                || UrlUtils::idnHostToUnicode($host) === UrlUtils::idnHostToUnicode($host2))
-            && $url->getPort() === $this->getPort()
-            && $url->user === $this->user
-            && $url->password === $this->password
-            && UrlUtils::unescape($url->path, '%/') === UrlUtils::unescape($this->path, '%/')
-            && $query === $query2
-            && $url->fragment === $this->fragment;
-    }
-    public function getCanonical(): static
-    {
-        $this->path = preg_replace_callback(
-            '#[^!$&\'()*+,/:;=@%]+#',
-            fn(array $m): string => rawurlencode($m[0]),
-            UrlUtils::unescape($this->path, '%/'),
-        );
-        $this->host = rtrim($this->host, '.');
-        $this->host = UrlUtils::idnHostToUnicode(strtolower($this->host));
-        return $this;
-    }
+
+
+    # ! New Features
+
+    // public function getDomain(int $level = 2): string
+    // {
+    //     $parts = ip2long($this->host)
+    //         ? [$this->host]
+    //         : explode('.', $this->host);
+    //     $parts = $level >= 0
+    //         ? array_slice($parts, -$level)
+    //         : array_slice($parts, 0, $level);
+    //     return implode('.', $parts);
+    // }
+    // public function getBasePath(): string
+    // {
+    //     $pos = strrpos($this->path, '/');
+    //     return $pos === FALSE ? '' : substr($this->path, 0, $pos + 1);
+    // }
+    // public function getBaseUrl(): string
+    // {
+    //     return $this->getHostUrl() . $this->getBasePath();
+    // }
+    // public function getRelativeUrl(): string
+    // {
+    //     return substr($this->getAbsoluteUrl(), strlen($this->getBaseUrl()));
+    // }
+    // public function isEqual(string $url): bool
+    // {
+    //     $url   = new self($url);
+    //     $query = $url->query;
+    //     ksort($query);
+    //     $query2 = $this->query;
+    //     ksort($query2);
+    //     $host  = rtrim($url->host, '.');
+    //     $host2 = rtrim($this->host, '.');
+    //     return $url->scheme === $this->scheme
+    //         && (! strcasecmp($host, $host2)
+    //             || UrlUtils::idnHostToUnicode($host) === UrlUtils::idnHostToUnicode($host2))
+    //         && $url->getPort() === $this->getPort()
+    //         && $url->user === $this->user
+    //         && $url->password === $this->password
+    //         && UrlUtils::unescape($url->path, '%/') === UrlUtils::unescape($this->path, '%/')
+    //         && $query === $query2
+    //         && $url->fragment === $this->fragment;
+    // }
+    // public function getCanonical(): static
+    // {
+    //     $this->path = preg_replace_callback(
+    //         '#[^!$&\'()*+,/:;=@%]+#',
+    //         fn(array $m): string => rawurlencode($m[0]),
+    //         UrlUtils::unescape($this->path, '%/'),
+    //     );
+    //     $this->host = rtrim($this->host, '.');
+    //     $this->host = UrlUtils::idnHostToUnicode(strtolower($this->host));
+    //     return $this;
+    // }
 }
