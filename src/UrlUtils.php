@@ -12,7 +12,7 @@ namespace Mirage\Url;
 class UrlUtils
 {
 
-    private static function idnHostToUnicode(string $host): ?string
+    public static function idnHostToUnicode(string $host): ?string
     {
         if (! str_contains($host, '--'))
         {
