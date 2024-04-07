@@ -24,7 +24,7 @@ final class SchemaTest extends TestCase
         $url->setSchemeSafe("");
         $this->assertSame(NULL, $url->getScheme());
 
-        $url = new Url("://user:password@sub.domain.tld/path/?q=query");
+        $url = new Url("//user:password@sub.domain.tld/path/?q=query");
         $this->assertSame($url->getDefaultScheme(), $url->getScheme());
     }
 }
