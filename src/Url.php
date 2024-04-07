@@ -31,6 +31,7 @@ class Url implements \JsonSerializable
         {
             throw new \exception("Malformed or unsupported URI '$url'.");
         }
+        // print_r($parsedUrl);
 
         $this->setScheme($parsedUrl["scheme"] ?? $this->deafultScheme);
         $this->setPort((int) ($parsedUrl["port"] ?? $this->defaultPort));
