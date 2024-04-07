@@ -13,7 +13,7 @@ trait PasswordTrait
 {
     private ?string $password = NULL;
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
