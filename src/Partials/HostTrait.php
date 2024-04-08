@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -25,7 +25,8 @@ trait HostTrait
 
     public function setHostSafe(?string $host = NULL): void
     {
-        if (TRUE === empty($host)) $host = NULL;
+        if (TRUE === empty($host))
+            $host = NULL;
         $this->setHost($host);
     }
 }

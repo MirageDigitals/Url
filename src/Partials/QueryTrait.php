@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -22,15 +22,19 @@ trait QueryTrait
 
     public function setQuery(string|array|null $query): void
     {
-        if (TRUE === is_array($query)) {
+        if (TRUE === is_array($query))
+        {
             $this->query = $query;
             return;
         }
-        else {
-            if (TRUE ===is_string($query)) {
+        else
+        {
+            if (TRUE === is_string($query))
+            {
                 $query = UrlUtils::parseQuery((string) $query);
             }
-            else {
+            else
+            {
                 $query = [];
             }
             $this->query = $query;
@@ -39,12 +43,14 @@ trait QueryTrait
 
     public function setQuerySafe(string|array|null $query = NULL): void
     {
-        if (TRUE === is_array($query)) {
+        if (TRUE === is_array($query))
+        {
             $this->query = $query;
             return;
         }
-        else {
-            $query = UrlUtils::parseQuery((string) $query);
+        else
+        {
+            $query       = UrlUtils::parseQuery((string) $query);
             $this->query = $query;
         }
     }
@@ -58,7 +64,8 @@ trait QueryTrait
 
     public function getQueryParameters(): array
     {
-        if (TRUE === is_array($this->query)) return $this->query;
+        if (TRUE === is_array($this->query))
+            return $this->query;
         return (array) $this->query;
     }
 
@@ -69,11 +76,14 @@ trait QueryTrait
 
     public function setQueryParameter(string $name, mixed $value): void
     {
-        if (FALSE === empty($value)) {
+        if (FALSE === empty($value))
+        {
             $this->query[$name] = $value;
         }
-        else {
-            if (TRUE === isset($this->query[$name])) unset ($this->query[$name]);
+        else
+        {
+            if (TRUE === isset($this->query[$name]))
+                unset($this->query[$name]);
         }
     }
 

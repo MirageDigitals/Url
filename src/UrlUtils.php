@@ -29,26 +29,26 @@ class UrlUtils
     }
 
 
-    public static function unescape(string $s, string $reserved = '%;/?:@&=+$,'): string
+    public static function unescape(string $string, string $reservedChars = '%;/?:@&=+$,'): string
     {
-        if ($reserved !== '')
+        if ($reservedChars !== '')
         {
-            $s = preg_replace_callback(
-                '#%(' . substr(chunk_split(bin2hex($reserved), 2, '|'), 0, -1) . ')#i',
-                fn(array $m): string => '%25' . strtoupper($m[1]),
-                $s,
+            $string = preg_replace_callback(
+                '#%(' . substr(chunk_split(bin2hex($reservedChars), 2, '|'), 0, -1) . ')#i',
+                fn(array $temp): string => '%25' . strtoupper($temp[1]),
+                $string,
             );
         }
 
-        return rawurldecode($s);
+        return rawurldecode($string);
     }
 
-    public static function parseQuery(string $s): array
+    public static function parseQuery(string $string): array
     {
-        $s   = str_replace(['%5B', '%5b'], '[', $s);
-        $sep = preg_quote(ini_get('arg_separator.input'));
-        $s   = preg_replace("#([$sep])([^[$sep=]+)([^$sep]*)#", '&0[$2]$3', '&' . $s);
-        parse_str($s, $res);
+        $string    = str_replace(['%5B', '%5b'], '[', $string);
+        $separator = preg_quote(ini_get('arg_separator.input'));
+        $string    = preg_replace("#([$separator])([^[$separator=]+)([^$separator]*)#", '&0[$2]$3', '&' . $string);
+        parse_str($string, $res);
         return $res[0] ?? [];
     }
 }

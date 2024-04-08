@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -25,7 +25,8 @@ trait PathTrait
 
     public function setPathSafe(?string $path = NULL): void
     {
-        if (TRUE === empty($path)) $path = NULL;
+        if (TRUE === empty($path))
+            $path = NULL;
         $this->setPath($path);
     }
 }

@@ -7,13 +7,14 @@ final class PasswordTest extends TestCase
     public function testPassword(): void
     {
         $passwords = ["xs7cXy", "cJ#5@q", "a?.458", "mM$$?"];
-        foreach ($passwords as $password) {
-            $url = new Url("//user:" . urlencode($password) ."@sub.domain.tld/path/?q=query");
+        foreach ($passwords as $password)
+        {
+            $url = new Url("//user:" . urlencode($password) . "@sub.domain.tld/path/?q=query");
             $this->assertSame($password, $url->getPassword());
         }
 
         $url = new Url("//user:password@sub.domain.tld/path/?q=query");
-        
+
         $url->setPassword("");
         $this->assertSame("", $url->getPassword());
 

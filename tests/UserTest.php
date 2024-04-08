@@ -7,7 +7,8 @@ final class UserTest extends TestCase
     public function testUser(): void
     {
         $users = ["mike", "sarah", "andrew", "john"];
-        foreach ($users as $user) {
+        foreach ($users as $user)
+        {
             $url = new Url("//" . urlencode($user) . ":password@sub.domain.tld/path/?q=query");
             $this->assertSame($user, $url->getUser());
         }

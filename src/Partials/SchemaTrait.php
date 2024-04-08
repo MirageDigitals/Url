@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -27,7 +27,8 @@ trait SchemaTrait
 
     public function setSchemeSafe(?string $scheme = NULL): void
     {
-        if (TRUE === empty($scheme)) $scheme = NULL;
+        if (TRUE === empty($scheme))
+            $scheme = NULL;
         $this->setScheme($scheme);
     }
 

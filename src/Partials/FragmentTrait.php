@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -17,7 +17,7 @@ trait FragmentTrait
     {
         return $this->fragment;
     }
-    
+
     public function setFragment(?string $fragment): void
     {
         $this->fragment = $fragment;
@@ -25,7 +25,8 @@ trait FragmentTrait
 
     public function setFragmentSafe(?string $fragment = NULL): void
     {
-        if (TRUE === empty($fragment)) $fragment = NULL;
+        if (TRUE === empty($fragment))
+            $fragment = NULL;
         $this->setFragment($fragment);
     }
 }

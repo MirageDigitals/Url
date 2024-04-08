@@ -43,16 +43,22 @@ class Url implements \JsonSerializable
         $this->setFragment(rawurldecode((string) ($parsedUrl["fragment"] ?? NULL)));
 
     }
+
+    public static function fromGlobals(): static
+    {
+        $urlString = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        return new Url($urlString);
+    }
     final public function toArray(): array
     {
         return [
-            "scheme" => $this->scheme, 
-            "user" => $this->user, 
-            "password" => $this->password, 
-            "host" => $this->host, 
-            "port" => $this->port, 
-            "path" => $this->path, 
-            "query" => $this->query, 
+            "scheme"   => $this->scheme,
+            "user"     => $this->user,
+            "password" => $this->password,
+            "host"     => $this->host,
+            "port"     => $this->port,
+            "path"     => $this->path,
+            "query"    => $this->query,
             "fragment" => $this->fragment
         ];
     }
