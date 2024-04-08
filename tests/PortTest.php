@@ -7,13 +7,14 @@ final class PortTest extends TestCase
     public function testPort(): void
     {
         $ports = [80, 443];
-        foreach ($ports as $port) {
+        foreach ($ports as $port)
+        {
             $url = new Url("//user:password@sub.domain.tld:$port/path/?q=query");
             $this->assertSame($port, $url->getPort());
         }
 
         $url = new Url("//user:password@sub.domain.tld:80/path/?q=query");
-        
+
         $url->setPort(0);
         $this->assertSame(0, $url->getPort());
 

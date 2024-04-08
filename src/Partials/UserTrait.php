@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -25,7 +25,8 @@ trait UserTrait
 
     public function setUserSafe(?string $user = NULL): void
     {
-        if (TRUE === empty($user)) $user = NULL;
+        if (TRUE === empty($user))
+            $user = NULL;
         $this->setUser($user);
     }
 }

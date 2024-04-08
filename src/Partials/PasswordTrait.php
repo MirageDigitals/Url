@@ -5,7 +5,7 @@
  * Copyright (c) 2024 Sina Kuhestani (https://kuhestani.org)
  */
 
-declare(strict_types= 1);
+declare(strict_types=1);
 
 namespace Mirage\Url\Partials;
 
@@ -25,7 +25,8 @@ trait PasswordTrait
 
     public function setPasswordSafe(?string $password = NULL): void
     {
-        if (TRUE === empty($password)) $password = NULL;
+        if (TRUE === empty($password))
+            $password = NULL;
         $this->setPassword($password);
     }
 }

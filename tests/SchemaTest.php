@@ -7,7 +7,8 @@ final class SchemaTest extends TestCase
     public function testScheme(): void
     {
         $schema = ["https", "http"];
-        foreach ($schema as $scheme) {
+        foreach ($schema as $scheme)
+        {
             $url = new Url("$scheme://user:password@sub.domain.tld/path/?q=query");
             $this->assertSame($scheme, $url->getScheme());
         }
